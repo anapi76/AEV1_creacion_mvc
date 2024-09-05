@@ -1,0 +1,43 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+    {% if resultados is null %}
+        0 results
+        <p><a href="/">Volver</a></p>
+    {% else %}
+            <h4>{{title1}}</h4>
+            <form action="#" method="post">
+                <select name="clientes" id="selectClient">
+                {% for row in resultados %}
+                    <option value={{row.CLIENTE_COD}}>{{row.NOMBRE}}</option>
+                {% endfor %}
+                </select>
+                <input type="submit" value="Enviar" />
+            </form>
+ 
+        {% if pedidos is null or pedidos is empty %}
+        <table cellpadding="5">
+            <tr>
+                <th colspan={{pedidos|length}}>{{titleTable}}</th>
+            </tr> 
+            <tr>
+                <td>No hay pedidos</td>
+            </tr>           
+        </table>
+        {% else %}
+        <table cellpadding="5">
+            <tr>
+                <th colspan={{pedidos|length}}>{{titleTable}}</th>
+            </tr> 
+            <tr>
+            {% for row in pedidos %}
+                <td><a href="/orderDetail/{{row.PEDIDO_NUM}}">{{row.PEDIDO_NUM}}</a></td> 
+            {% endfor %}
+            </tr> 
+        </table>
+        {% endif %}
+        <p><a href="/">Volver</a></p>
+     
+{% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+    {% if resultados is null %}
+        0 results
+        <p><a href="/">Volver</a></p>
+    {% else %}
+        <table cellpadding="5">
+        <h4>{{title1}}</h4>
+                <tr>
+                    <th>Número de empleado</th>
+                    <th>Apellidos</th>
+                    <th>Oficio</th>
+                    <th>Jefe</th>
+                    <th>Fecha de alta</th>
+                    <th>Salario</th>
+                    <th>Comisión</th>
+                </tr>
+            <thead>
+            <tbody>
+            {% for row in resultados %}
+            
+                <tr>
+                    <td>{{row.EMP_NO}}</td>
+                    <td>{{row.APELLIDOS|capitalize}}</td>
+                    <td>{{row.OFICIO|lower}}</td>
+                    <td>{{row.JEFE}}</td>
+                    <td>{{row.FECHA_ALTA|date('d-m-Y')}}</td>
+                    <td>{{row.SALARIO|format_currency('EUR')}}</td>
+                    <td>{{row.COMISION|format_currency('EUR')}}</td>
+                </tr>
+            
+            {% endfor %}
+            </tbody>
+        </table>
+        <p><a href="/departamentsList">Volver a Departamentos</a></p>
+        <p><a href="/">Home</a></p>
+    
+    {% endif %}
+
+{% endblock %}

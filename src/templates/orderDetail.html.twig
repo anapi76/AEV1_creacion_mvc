@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+    {% if resultados is null %}
+        0 results
+        <p><a href="/ordersList">Volver</a></p>
+    {% else %}
+    
+        <table cellpadding="5">
+            <tr>
+                <th>Número de detalle</th>
+                <th>Número de producto</th>
+                <th>Precio de venta</th>
+                <th>Cantidad</th>
+                <th>Importe</th>
+            </tr>
+        {% for row in resultados %}
+            <tr>
+                <td>{{row.DETALLE_NUM}}</td>
+                <td>{{row.PROD_NUM}}</td>
+                <td>{{row.PRECIO_VENTA|format_currency('EUR')}}</td>
+                <td>{{row.CANTIDAD}}</td>
+                <td>{{row.IMPORTE|format_currency('EUR')}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        <p><a href="/ordersList">Volver a pedidos</a></p>
+    {% endif %}
+
+{% endblock %}

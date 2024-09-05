@@ -1,0 +1,40 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+    {% if resultados is null %}
+        0 results
+        <p><a href="/customersList">Volver</a></p>
+    {% else %}
+        <table cellpadding="5">
+            <tr>
+                <th>Código cliente</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Ciudad</th>
+                <th>Estado</th>
+                <th>Código postal</th>
+                <th>Área</th>
+                <th>Teléfono</th>
+                <th>Código empresa</th>
+                <th>Crédito</th>
+                <th>Observaciones</th>
+            </tr>
+            <tr>
+                <td>{{resultados.CLIENTE_COD}}</td>
+                <td>{{resultados.NOMBRE|capitalize}}</td>
+                <td>{{resultados.DIREC|capitalize}}</td>
+                <td>{{resultados.CIUDAD|capitalize}}</td>
+                <td>{{resultados.ESTADO}}</td>
+                <td>{{resultados.COD_POSTAL}}</td>
+                <td>{{resultados.AREA}}</td>
+                <td>{{resultados.TELEFONO}}</td>
+                <td>{{resultados.REPR_COD}}</td>
+                <td>{{resultados.LIMITE_CREDITO|format_currency('EUR')}}</td>
+                <td>{{resultados.OBSERVACIONES|lower}}</td>
+            </tr>
+        </table>
+        <p><a href="/customersList">Volver a clientes</a></p>
+    {% endif %}
+
+{% endblock %}

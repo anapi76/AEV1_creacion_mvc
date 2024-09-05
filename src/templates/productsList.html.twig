@@ -1,0 +1,25 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+    {% if resultados is null %}
+        0 results
+        <p><a href="/">Volver</a></p>
+    {% else %}
+        <table cellpadding="5">
+                <tr>
+                    <th>Número de producto</th>
+                    <th>Descripción</th>
+                </tr>
+            {% for row in resultados %}
+                <tr>
+                    <td>{{row.PROD_NUM}}</td>
+                    <td>{{row.DESCRIPCION|lower}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <p><a href="/">Volver</a></p>
+    {% endif %}
+
+{% endblock %}
